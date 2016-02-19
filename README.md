@@ -2,7 +2,8 @@
 
 ## 对阿里巴巴开放搜索的请求封装
 
-[官方文档](https://help.aliyun.com/document_detail/opensearch/api-reference/api-interface/data-manager.html)
+- [官方文档](https://help.aliyun.com/document_detail/opensearch/api-reference/api-interface/data-manager.html)
+- 目前只简单封装了ListApp\AddDoc\SingleSearch三个接口
 
 ##示例
 
@@ -10,6 +11,7 @@
 //列出当前账户所有的APP
 var cf opensearch.Config
 cf.OS_ACCESS_KEY = "xxxxxxxxxx"
+//这里在私钥后面要加上&符号
 cf.OS_SECRET_KEY = "xxxxxxxxxxxx&"
 cf.OS_HOST = "http://opensearch-cn-hangzhou.aliyuncs.com"
 cf.OS_APPNAME = "xxxxxxxxx"
