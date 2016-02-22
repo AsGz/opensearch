@@ -47,7 +47,8 @@ func aliEncode(str string) string {
 //组织公共参数
 func (o *OpenSearchClient) getPublicParams() ParamsList {
 	rand.Seed(time.Now().UnixNano())
-	signNonce := fmt.Sprintf("%d%d", time.Now().Unix(), rand.Intn(1000))
+	o.seq++
+	signNonce := fmt.Sprintf("%d%d%d", time.Now().Unix(), rand.Intn(1000), o.seq)
 	var params ParamsList
 	params = append(params, Param{"AccessKeyId", o.cf.OS_ACCESS_KEY})
 	params = append(params, Param{"SignatureMethod", "HMAC-SHA1"})

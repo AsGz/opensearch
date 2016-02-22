@@ -22,7 +22,8 @@ type Config struct {
 }
 
 type OpenSearchClient struct {
-	cf Config
+	cf	Config
+	seq	int64
 }
 
 type AliResult struct {
