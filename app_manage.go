@@ -60,7 +60,7 @@ func doHttpRequest(url, method, params string) *AliResult {
 	resp, err = http.DefaultClient.Do(request)
 	if err != nil {
 		result.Status = S_FAILED
-		result.Errors = errors.New(fmt.Sprintf("resp:%d, err=%s", resp, err))
+		result.Errors = fmt.Errorf("resp.StatusCode:%d, err=%s", resp.StatusCode, err)
 		return result
 	}
 	defer resp.Body.Close()
@@ -68,7 +68,7 @@ func doHttpRequest(url, method, params string) *AliResult {
 	b, err = ioutil.ReadAll(resp.Body)
 	if err != nil || resp.StatusCode != 200 {
 		result.Status = S_FAILED
-		result.Errors = errors.New(fmt.Sprintf("[httpcode:%d][err:%s]", resp.StatusCode, err))
+		result.Errors = fmt.Errorf("resp.StatusCode:%d, err=%s", resp.StatusCode, err)
 		return result
 	} else {
 		err = json.Unmarshal(b, &result)
