@@ -27,7 +27,7 @@ if err != nil {
 
 ```go
 //添加文档,建立索引
-ar := o.AddDoc("table_name", formatJson(items))
+ar := o.PushDoc("table_name", formatJson(items))
 fmt.Printf("%#v\n", ar)
 
 //进行单索引库的检索
