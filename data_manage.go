@@ -12,6 +12,7 @@ func (o *OpenSearchClient) AddDoc(tableName, itemsJson string) AliResult {
 	sign, queryString := o.getAliSign(params, "POST")
 	url := fmt.Sprintf("%s/index/doc/%s?%s&Signature=%s", o.cf.OS_HOST, o.cf.OS_APPNAME, queryString, sign)
 	//fmt.Println(url)
-	itemsData := fmt.Sprintf("items=%s", aliEncode(itemsJson))
+	//itemsData := fmt.Sprintf("items=%s", aliEncode(itemsJson))
+	itemsData := "items="+itemsJson
 	return doHttpRequest(url, "POST", itemsData)
 }
