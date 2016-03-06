@@ -44,8 +44,8 @@ func NewOpenSearchClient(cf Config) (*OpenSearchClient, error) {
 	return o, nil
 }
 
-func doHttpRequest(url, method, params string) AliResult {
-	var result AliResult
+func doHttpRequest(url, method, params string) *AliResult {
+	var result = &AliResult{}
 	var err error
 	var request *http.Request
 	request, err = http.NewRequest(method, url, strings.NewReader(params))
@@ -81,7 +81,7 @@ func doHttpRequest(url, method, params string) AliResult {
 }
 
 //列出所有应用
-func (o *OpenSearchClient) ListApp() AliResult {
+func (o *OpenSearchClient) ListApp() *AliResult {
 	var params ParamsList
 	sign, queryString := o.getAliSign(params, "GET")
 	url := fmt.Sprintf("%s/index?%s&Signature=%s", o.cf.OS_HOST, queryString, sign)
