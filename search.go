@@ -5,7 +5,7 @@ import (
 )
 
 //对单个索引进行搜索
-func (o *OpenSearchClient) SingleSearch(indexName, word string, start, hit int) AliResult {
+func (o *OpenSearchClient) SingleSearch(indexName, word string, start, hit int) *AliResult {
 	var params ParamsList
 	params = append(params, Param{"index_name", o.cf.OS_APPNAME})
 	query := fmt.Sprintf("config=start:%d,hit:%d,format=fulljson&&query=%s:'%s'", start, hit, indexName, word)
