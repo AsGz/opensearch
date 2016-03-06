@@ -5,7 +5,7 @@ import (
 )
 
 //添加文档到服务器
-func (o *OpenSearchClient) AddDoc(tableName, itemsJson string) AliResult {
+func (o *OpenSearchClient) PushDoc(tableName, itemsJson string) AliResult {
 	var params ParamsList
 	params = append(params, Param{"action", "push"})
 	params = append(params, Param{"table_name", tableName})
