@@ -5,7 +5,7 @@ import (
 )
 
 //添加文档到服务器
-func (o *OpenSearchClient) PushDoc(tableName, itemsJson string) *AliResult {
+func (o *OpenSearchClient) PushDoc(aliResult *AliResult, tableName, itemsJson string) error {
 	var params ParamsList
 	params = append(params, Param{"action", "push"})
 	params = append(params, Param{"table_name", tableName})
@@ -14,5 +14,5 @@ func (o *OpenSearchClient) PushDoc(tableName, itemsJson string) *AliResult {
 	//fmt.Println(url)
 	//itemsData := fmt.Sprintf("items=%s", aliEncode(itemsJson))
 	itemsData := "items=" + itemsJson
-	return doHttpRequest(url, "POST", itemsData)
+	return doHttpRequest(aliResult, url, "POST", itemsData)
 }
