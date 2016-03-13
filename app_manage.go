@@ -44,6 +44,27 @@ func (m *AliResult) IsFailed() bool {
     return m.Status == S_FAILED
 }
 
+func (m *AliResult) ErrStr() string {
+    n := len(m.Errors)
+    if n == 0 {
+        if m.IsOK() {
+            return ""
+        } else if m.IsFailed() {
+            return "no detail error"
+        } else {
+            return "Happen some error before aliyun"
+        }
+    } else if n==1 {
+        return fmt.Sprintf("code=%d,message=%s",m.Errors[0].Code,m.Errors[0].Message)
+    } else {
+        s := ""
+        for i, e := range m.Errors {
+            s += fmt.Sprintf("code[%d]=%d,message[%d]=%s\n",i,e.Code,i,e.Message)
+        }
+        return s
+    }
+}
+
 func (m *AliResult) MakeError() error {
     n := len(m.Errors)
     if n == 0 {
