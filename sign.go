@@ -57,7 +57,7 @@ func (o *OpenSearchClient) getPublicParams() ParamsList {
 	params = append(params, Param{"Timestamp", time.Now().UTC().Format(TIME_FORMAT)})
 	params = append(params, Param{"Version", "v2"})
 	//添加文档时, items参数不纳入签名
-	// params = append(params, Param{"sign_mode", "1"})
+	params = append(params, Param{"sign_mode", "1"})
 	return params
 }
 

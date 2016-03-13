@@ -12,6 +12,5 @@ func (o *OpenSearchClient) Search(result interface{}, fetch_fields string, query
 	params = append(params, Param{"fetch_fields", fetch_fields})
 	sign, queryString := o.getAliSign(params, "GET")
 	url := fmt.Sprintf("%s/search?%s&Signature=%s", o.cf.OS_HOST, queryString, sign)
-	fmt.Printf("url=%s\n", url)
 	return doHttpRequest(result, url, "GET", "")
 }
